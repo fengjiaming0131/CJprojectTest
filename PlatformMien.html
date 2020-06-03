@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"   name="viewport" content="width=device-width, initial-scale=1,   user-scalable=no"   >
+    <title>冯家铭课程设计</title>
+    <!--用来加载外部资源时用的标签-->
+    <link rel="short icon" href="Resource/Resource/icon.png">
+    <link rel="stylesheet"  href="ExternalStyle.css">
+    <script type="text/javascript"  src="Commonjs.js"></script>
+
+    <style>
+
+        article{
+            margin: 20px;
+        }
+        h3{
+            color: red;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+       article p{
+            font-size: 12px;
+            text-indent: 2em;
+            line-height: 2em;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <span>风采展示</span>
+</header>
+<!--轮播图部分-->
+<!--img用来展示图片 -->
+<section    class="DS_first_section">
+    <img src="Resource/Resource/banner4.png" alt="图片加载失败">
+</section>
+
+<article>
+    <h3 id="title"></h3>
+    <h4 id="subTitle"></h4>
+    <p  id="info"></p>
+</article>
+
+
+<script>
+
+    function assign(obj) {
+        var title_content = document.getElementById("title");
+        var subtitle_content = document.getElementById("subTitle");
+        var info_content = document.getElementById("info");
+
+        title_content.innerHTML = obj.title;
+        subtitle_content.innerHTML = obj.subTitle;
+        info_content.innerHTML = obj.info;
+    }
+
+
+    var obj_text = JSON.parse(localStorage.getItem("Platfrom_json"));
+
+
+    if(obj){
+        var obj = obj_text.data;
+        assign(obj);
+    }
+
+    else{
+
+            requestMethod('get','aboutus',"",function (obj, obj1) {
+                assign(obj);
+
+                window.localStorage.setItem("Platfrom_json", obj1);
+            });
+
+
+    }
+
+</script>
+
+<!--底面操作栏-->
+<footer>
+
+    <a href="DropletService.html"> <img src="Resource/Resource/nav10.png" alt=""> <span    >小滴服务</span> </a>
+    <a href="BusinessProject.html"> <img src="Resource/Resource/nav20.png" alt=""> <span>企业项目</span> </a>
+    <a href="ServiceProcess.html"> <img src="Resource/Resource/nav30.png" alt=""> <span>服务流程</span> </a>
+    <a href="PlatformMien.html"> <img src="Resource/Resource/nav41.png" alt=""> <span   style="color: red">平台风采</span> </a>
+    <a href="MyDroplet.html"> <img src="Resource/Resource/nav50.png" alt=""> <span>我的小滴</span> </a>
+
+
+</footer>
+</body>
+</html>
